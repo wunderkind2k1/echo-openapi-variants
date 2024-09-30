@@ -1,0 +1,45 @@
+openapi: 3.0.3
+info:
+  title: HelloWorld API
+  description: A simple API with two endpoints that return a greeting message.
+  version: 1.0.0
+servers:
+  - url: http://your-server.com
+paths:
+  /helloworld:
+    get:
+      summary: Returns "Hello world" message
+      operationId: getHelloWorld
+      responses:
+        '200':
+          description: A successful response returning "Hello world".
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: string
+                    example: Hello world
+    put:
+      summary: Returns a personalized greeting based on the 'name' query parameter
+      operationId: putHelloWorld
+      parameters:
+        - name: name
+          in: query
+          required: true
+          description: The name to be included in the greeting
+          schema:
+            type: string
+            example: Mars Venus
+      responses:
+        '200':
+          description: A successful response returning a personalized greeting.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  result:
+                    type: string
+                    example: Hello Mars Venus

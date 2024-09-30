@@ -1,26 +1,19 @@
 package main
 
 import (
-	"github.com/labstack/echo/v4/middleware"
-	"net/http"
+	"echo-openapi-variants/api"
+	"log"
+
+	"github.com/labstack/echo/v4"
 )
 
 func main() {
-	// Echo instance
+	// create a type that satisfies the `api.ServerInterface`, which contains an implementation of every operation from the generated code
+
 	e := echo.New()
+	server := api.NewServer()
+	api.RegisterHandlers(e, server)
 
-	// Middleware
-	e.Use(middleware.Logger())
-	e.Use(middleware.Recover())
-
-	// Routes
-	e.GET("/", hello)
-
-	// Start server
-	e.Logger.Fatal(e.Start(":1323"))
-}
-
-// Handler
-func hello(c echo.Context) error {
-	return c.String(http.StatusOK, "Hello, World!")
+	// And we serve HTTP until the world ends.
+	log.Fatal(e.Start("0.0.0.0:8080"))
 }
