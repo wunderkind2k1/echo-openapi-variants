@@ -41,3 +41,7 @@ curl -X POST -H "Content-Type: application/json" -d '{"name":"cpil_posted"}' "lo
 // {"message":"Hello, cpil_posted!"}
 ```
 
+## Current status:
+I works in general. API works. The documentation is generated. But: Its a 1.0 API Spec and it can not be hosted as
+a "playable" API Spec currently as there are Issues in the used (echo-swagger) toolchain.
+See https://github.com/swaggo/echo-swagger/issues for details-
